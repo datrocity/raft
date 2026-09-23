@@ -1,6 +1,4 @@
-# raft
-
-*raft keeps you afloat on the data lake.*
+# `raft` keeps you afloat on the data lake
 
 Experiment-first research catalog for scientists. Give research results a persistent, queryable identity tied to the parameters and code that produced them.
 
@@ -10,11 +8,12 @@ Experiment-first research catalog for scientists. Give research results a persis
 
 **NEW** `raft` now ships with an AI skill to help you import your messy research files into `raft`, using your favorite AI assistant!!
 
-## Installation
+## Installation with `pip`
+
+The PyPI distribution is `data-raft` (`raft` was already taken); everything else — the import (`import raft`), the CLI (`raft ...`), the repo — is just `raft`.
 
     pip install data-raft
 
-The PyPI distribution is `data-raft` (`raft` was already taken); everything else — the import (`import raft`), the CLI (`raft ...`), the repo — is just `raft`.
 
 ## 1. Why raft?
 
