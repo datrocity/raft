@@ -10,6 +10,12 @@ Experiment-first research catalog for scientists. Give research results a persis
 
 **NEW** `raft` now ships with an AI skill to help you import your messy research files into `raft`, using your favorite AI assistant!!
 
+## Installation
+
+    pip install data-raft
+
+The PyPI distribution is `data-raft` (`raft` was already taken); everything else — the import (`import raft`), the CLI (`raft ...`), the repo — is just `raft`.
+
 ## 1. Why raft?
 
 Every research project rediscovers the same problem: after enough experiments, `results/` turns into `run3_final.csv`, `run3_final_FIXED.csv`, `sweep_lr0.01/`, and a git history that no longer matches what actually produced any of them. Six months later, nobody — including you — can answer "which parameters made this plot?" or "what code produced this array?"
