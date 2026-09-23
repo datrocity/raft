@@ -1,7 +1,7 @@
 import pandas as pd
 import pandas.testing as pdt
 
-from box import init
+from raft import init
 
 
 def test_compute_or_load_computes_on_first_call(tmp_path):

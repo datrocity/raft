@@ -2,7 +2,7 @@ import subprocess
 import sys
 import types
 
-from box.manifest.lineage import (
+from raft.manifest.lineage import (
     activity_source,
     author_source,
     detect_activity,

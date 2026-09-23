@@ -1,11 +1,11 @@
 # AGENTS.md
 
-Guidance for AI assistants and human contributors working on the `box`
-source tree. End-user assistant guidance is in `box/skills/*.md`.
+Guidance for AI assistants and human contributors working on the `raft`
+source tree. End-user assistant guidance is in `raft/skills/*.md`.
 
 ## Project shape
 
-`box` is a small library that gives research results a persistent,
+`raft` is a small library that gives research results a persistent,
 queryable identity. Four nouns:
 
 - **Project** — named workspace (`walker`), rooted at `{datastore}/{project}/`.
@@ -18,7 +18,7 @@ queryable identity. Four nouns:
 Every manifest's `provenance` section also records `author` (OS username)
 and `activity` (the running script/notebook name), both auto-detected where
 possible and overridable via `Project(..., activity=..., author=...)` /
-`box.init(..., activity=..., author=...)`. See `box/manifest/lineage.py`.
+`raft.init(..., activity=..., author=...)`. See `raft/manifest/lineage.py`.
 
 ## Development commands
 
@@ -34,15 +34,15 @@ possible and overridable via `Project(..., activity=..., author=...)` /
 - Python 3.11+.
 - **No type annotations by default.** Numpy-style docstrings carry types.
 - Ruff enforces docstring style (D rule set, numpy convention).
-- Public API lives in `box/__init__.py`; internal helpers stay module-private
+- Public API lives in `raft/__init__.py`; internal helpers stay module-private
   (leading underscore).
 - Immutability preferred for value objects (`Manifest`, `Version`).
-- Errors inherit from `BoxError` so users catch everything with one `except`.
+- Errors inherit from `RaftError` so users catch everything with one `except`.
 - Line length 88.
 
 ## Adding a new artifact type
 
-1. Create `box/artifact/<mytype>.py`.
+1. Create `raft/artifact/<mytype>.py`.
 2. Subclass `Artifact`, set `handles_type` and `extension` class attributes.
 3. Implement `write_bytes(data, metadata=None)` and `read_bytes(blob)`.
    If the on-disk format can embed metadata (PNG tEXt, parquet schema, etc.),
@@ -50,7 +50,7 @@ possible and overridable via `Project(..., activity=..., author=...)` /
 4. Call `register_artifact(YourArtifactClass)` at the module bottom.
    For an opt-in alternative format (like the CSV alternative to parquet),
    pass `format="csv"`.
-5. Add to the late-import list in `box/artifact/__init__.py`.
+5. Add to the late-import list in `raft/artifact/__init__.py`.
 6. Add a test file `tests/artifact/test_<mytype>.py` covering: registration,
    extension, round-trip, and metadata embed (if applicable).
 
@@ -64,7 +64,7 @@ proj.experiment("baseline", lr=0.01)   # existing folder
 proj.experiment("baseline", lr=0.05)   # new folder, different hash
 ```
 
-## What box does NOT do
+## What raft does NOT do
 
 - Sweep execution — write the loop yourself.
 - Workflow orchestration or DAG scheduling.

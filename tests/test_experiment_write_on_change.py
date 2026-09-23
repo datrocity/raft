@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from box import init
-from box.errors import ArtifactNotFound
+from raft import init
+from raft.errors import ArtifactNotFound
 
 
 def _exp_folder(tmp_path):

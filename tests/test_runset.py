@@ -1,6 +1,6 @@
 import pandas as pd
 
-from box import init
+from raft import init
 
 
 def _seed(tmp_path):

@@ -1,4 +1,4 @@
-"""Abstract storage backend for box."""
+"""Abstract storage backend for raft."""
 
 from abc import ABC, abstractmethod
 

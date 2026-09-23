@@ -1,6 +1,6 @@
 import pytest
 
-from box.storage.file_datastore import FileDatastore
+from raft.storage.file_datastore import FileDatastore
 
 
 def test_write_then_read_roundtrip(tmp_path):

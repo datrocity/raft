@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "box"
+name = "data-raft"
 version = "0.3.0dev"
 description = "Experiment-first research catalog for scientists"
 readme = "README.md"
@@ -26,15 +26,15 @@ dev = [
 ]
 
 [project.scripts]
-box = "box.__main__:main"
+raft = "raft.__main__:main"
 
 [tool.setuptools.packages.find]
-include = ["box*"]
+include = ["raft*"]
 
 # Ensure skills (.md files) are packaged with the wheel so pip-installed
-# users can copy them into ~/.claude/skills/ via `box install-skills`.
+# users can copy them into ~/.claude/skills/ via `raft install-skills`.
 [tool.setuptools.package-data]
-"box.skills" = ["*.md"]
+"raft.skills" = ["*.md"]
 
 [tool.ruff]
 line-length = 88

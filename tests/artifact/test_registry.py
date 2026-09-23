@@ -1,8 +1,8 @@
 import pytest
 
-from box.artifact import get_artifact_for, register_artifact
-from box.artifact.artifact import Artifact
-from box.errors import UnsupportedArtifactType
+from raft.artifact import get_artifact_for, register_artifact
+from raft.artifact.artifact import Artifact
+from raft.errors import UnsupportedArtifactType
 
 
 class FakeThing:
@@ -23,7 +23,7 @@ class FakeThingArtifact(Artifact):
 
 
 def _cleanup_fake():
-    from box import artifact as art_mod
+    from raft import artifact as art_mod
 
     keys = [
         k

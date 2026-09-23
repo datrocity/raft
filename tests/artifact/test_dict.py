@@ -1,5 +1,5 @@
-from box.artifact import get_artifact_for
-from box.artifact.dict_ import DictArtifact
+from raft.artifact import get_artifact_for
+from raft.artifact.dict_ import DictArtifact
 
 
 def test_registered_on_import():

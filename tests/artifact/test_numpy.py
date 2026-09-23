@@ -1,8 +1,8 @@
 import numpy as np
 import numpy.testing as npt
 
-from box.artifact import get_artifact_for
-from box.artifact.numpy_ import NumpyArrayArtifact
+from raft.artifact import get_artifact_for
+from raft.artifact.numpy_ import NumpyArrayArtifact
 
 
 def test_registered_on_import():

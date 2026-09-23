@@ -4,12 +4,12 @@ import json
 
 import pandas as pd
 
-from box.conventions import (
+from raft.conventions import (
     EXPERIMENT_MANIFEST_FILENAME,
     MANIFEST_SUFFIX,
     PARAMS_FILENAME,
 )
-from box.errors import ArtifactNotFound
+from raft.errors import ArtifactNotFound
 
 
 class Run:
@@ -73,7 +73,7 @@ class Run:
             ) from None
         ext = data_file.split(".", 1)[1]
         blob = ds.read(f"{self._folder}/{artifact_name}/{data_file}")
-        from box.project import _artifact_class_for_extension
+        from raft.project import _artifact_class_for_extension
 
         return _artifact_class_for_extension(ext)().read_bytes(blob)
 

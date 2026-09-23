@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from box.storage.datastore import Datastore
+from raft.storage.datastore import Datastore
 
 
 class FileDatastore(Datastore):

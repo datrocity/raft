@@ -8,8 +8,8 @@ import io
 
 import pandas as pd
 
-from box.artifact import register_artifact
-from box.artifact.artifact import Artifact
+from raft.artifact import register_artifact
+from raft.artifact.artifact import Artifact
 
 _COMMENT_PREFIX = "# "
 

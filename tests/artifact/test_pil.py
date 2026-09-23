@@ -3,8 +3,8 @@ import io
 import numpy as np
 from PIL import Image
 
-from box.artifact import get_artifact_for
-from box.artifact.pil_ import PilImageArtifact
+from raft.artifact import get_artifact_for
+from raft.artifact.pil_ import PilImageArtifact
 
 
 def test_registered_on_import():

@@ -1,11 +1,11 @@
-"""box command-line entry point."""
+"""raft command-line entry point."""
 
 import argparse
 import shutil
 import sys
 from pathlib import Path
 
-import box
+import raft
 
 
 def _install_skills(dest):
@@ -20,7 +20,7 @@ def _install_skills(dest):
     list of pathlib.Path
         The copied file paths.
     """
-    src = box.skills_path()
+    src = raft.skills_path()
     dest = Path(dest).expanduser()
     dest.mkdir(parents=True, exist_ok=True)
     copied = []
@@ -32,7 +32,7 @@ def _install_skills(dest):
 
 
 def main(argv=None):
-    """Command-line entry point for ``box``.
+    """Command-line entry point for ``raft``.
 
     Parameters
     ----------
@@ -44,17 +44,17 @@ def main(argv=None):
     int
         Exit code.
     """
-    parser = argparse.ArgumentParser(prog="box")
+    parser = argparse.ArgumentParser(prog="raft")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     install = sub.add_parser(
         "install-skills",
-        help="Copy shipped AI skill files into ~/.claude/skills/box/ (or --dest).",
+        help="Copy shipped AI skill files into ~/.claude/skills/raft/ (or --dest).",
     )
     install.add_argument(
         "--dest",
-        default="~/.claude/skills/box",
-        help="Destination directory (default: ~/.claude/skills/box)",
+        default="~/.claude/skills/raft",
+        help="Destination directory (default: ~/.claude/skills/raft)",
     )
 
     args = parser.parse_args(argv)

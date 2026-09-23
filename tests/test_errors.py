@@ -1,19 +1,19 @@
 import pytest
 
-from box.errors import (
+from raft.errors import (
     ArtifactNotFound,
-    BoxError,
     ExperimentAlreadyExists,
+    RaftError,
 )
 
 
-def test_all_errors_are_box_errors():
-    assert issubclass(ExperimentAlreadyExists, BoxError)
-    assert issubclass(ArtifactNotFound, BoxError)
+def test_all_errors_are_raft_errors():
+    assert issubclass(ExperimentAlreadyExists, RaftError)
+    assert issubclass(ArtifactNotFound, RaftError)
 
 
-def test_box_error_is_an_exception():
-    assert issubclass(BoxError, Exception)
+def test_raft_error_is_an_exception():
+    assert issubclass(RaftError, Exception)
 
 
 def test_error_carries_message():

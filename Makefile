@@ -8,7 +8,7 @@ test:
 	.venv/bin/pytest tests
 
 cov:
-	.venv/bin/pytest --cov=box --cov-report=term-missing tests
+	.venv/bin/pytest --cov=raft --cov-report=term-missing tests
 
 lint:
 	.venv/bin/ruff check .

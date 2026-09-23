@@ -4,9 +4,9 @@ import pandas as pd
 import pandas.testing as pdt
 import pyarrow.parquet as pq
 
-from box.artifact import get_artifact_for
-from box.artifact.pandas_ import PandasDataFrameArtifact
-from box.artifact.pandas_csv import PandasCsvArtifact
+from raft.artifact import get_artifact_for
+from raft.artifact.pandas_ import PandasDataFrameArtifact
+from raft.artifact.pandas_csv import PandasCsvArtifact
 
 
 def test_registered_on_import():

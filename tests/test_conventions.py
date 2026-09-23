@@ -1,6 +1,6 @@
 import datetime as dt
 
-from box.conventions import (
+from raft.conventions import (
     WriteMode,
     canonicalize_params,
     experiment_folder_name,

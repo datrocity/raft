@@ -2,11 +2,11 @@
 
 import pandas as pd
 
-import box
+import raft
 
 
 def test_full_flow(tmp_path):
-    proj = box.init("walker", datastore=str(tmp_path))
+    proj = raft.init("walker", datastore=str(tmp_path))
 
     calls = {"pre": 0}
 
@@ -44,7 +44,7 @@ def test_full_flow(tmp_path):
 
 def test_reproduce_older_version(tmp_path):
     """Save twice, then verify we can load the earlier version."""
-    proj = box.init("walker", datastore=str(tmp_path))
+    proj = raft.init("walker", datastore=str(tmp_path))
     exp = proj.experiment("baseline", lr=0.01)
     exp.save({"n": 1}, "cfg")
     exp.save({"n": 2}, "cfg")
