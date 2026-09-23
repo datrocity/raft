@@ -5,31 +5,27 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
+## [0.2.0] - 2026-09-23
 
-- **Renamed the project from `box` to `raft`**, ahead of the first PyPI
-  release (the name `box` was already taken). The import package, CLI
-  command, and GitHub repository are now all `raft`; the PyPI
-  distribution is `data-raft`. Entries below this point describe
-  releases made under the old `box` name.
-
-### Added
-
-## [0.2.0] - 2026-09-01
+First public release, published to PyPI as `data-raft`.
 
 ### Added
 
 - Manifests now record `activity`: the script, notebook, or process name
   that produced the data. Auto-detected where possible (the running
   script's filename, or a notebook's name via `JPY_SESSION_NAME` on
-  JupyterLab/Notebook 7+); pass `activity=` to `box.init`/`Project`/
-  `box.experiment` to set it explicitly, or `author=` to override the
+  JupyterLab/Notebook 7+); pass `activity=` to `raft.init`/`Project`/
+  `raft.experiment` to set it explicitly, or `author=` to override the
   auto-detected OS username. Both are recorded in every manifest's
   `provenance` section and in the embedded business card, where the
   artifact format supports it.
 
 ### Changed
 
+- **Renamed the project from `box` to `raft`** ahead of this release
+  (the name `box` was already taken on PyPI). The import package, CLI
+  command, and GitHub repository are all `raft`; the PyPI distribution
+  is `data-raft`.
 - Metadata files (`params.yaml`/`manifest.yml`/`v{N}.manifest.yml`) are
   now written as `params.json`/`manifest.json`/`v{N}.manifest.json`.
   **Breaking:** catalogs created before this change are not read back —
