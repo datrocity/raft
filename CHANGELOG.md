@@ -5,9 +5,15 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
 ### Changed
+
+- **Renamed the project from `box` to `raft`**, ahead of the first PyPI
+  release (the name `box` was already taken). The import package, CLI
+  command, and GitHub repository are now all `raft`; the PyPI
+  distribution is `data-raft`. Entries below this point describe
+  releases made under the old `box` name.
+
+### Added
 
 ## [0.2.0] - 2026-09-01
 
