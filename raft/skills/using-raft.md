@@ -1,11 +1,11 @@
 ---
-name: using-box
-description: Use when writing Python code that interacts with a box research catalog — creating experiments, saving artifacts, or reading past runs for meta-analysis.
+name: using-raft
+description: Use when writing Python code that interacts with a raft research catalog — creating experiments, saving artifacts, or reading past runs for meta-analysis.
 ---
 
-# Using box
+# Using raft
 
-`box` is a research-catalog library with four nouns. Learn them and you know the API.
+`raft` is a research-catalog library with four nouns. Learn them and you know the API.
 
 ## Four nouns
 
@@ -17,9 +17,9 @@ description: Use when writing Python code that interacts with a box research cat
 ## Write
 
 ```python
-import box
+import raft
 
-proj = box.init("walker", datastore="./catalog")
+proj = raft.init("walker", datastore="./catalog")
 exp = proj.experiment("baseline", lr=0.01, prior="uniform")
 
 # Params flow from the experiment; do not re-declare them
@@ -32,7 +32,7 @@ name) automatically where possible. If the user names a specific script,
 notebook, or author explicitly, pass them at init instead of guessing:
 
 ```python
-proj = box.init("walker", datastore="./catalog", activity="train.py", author="jane")
+proj = raft.init("walker", datastore="./catalog", activity="train.py", author="jane")
 ```
 
 ## Cache expensive steps with @compute_or_load
@@ -94,7 +94,7 @@ Override with explicit inputs:
 
 ```python
 exp.save(plot, "plot", inputs=["results"])         # short name
-exp.save(plot, "plot", inputs=["box://foo/global/x/v3"])  # full URI
+exp.save(plot, "plot", inputs=["raft://foo/global/x/v3"])  # full URI
 ```
 
 ## Extending a previous run
@@ -115,7 +115,7 @@ exp.save(df, "result")                 # v1.parquet
 exp.save(df, "result", format="csv")   # v1.csv, with `# key value` metadata
 ```
 
-## What box does NOT do
+## What raft does NOT do
 
 - No sweep execution — write the loop yourself.
 - No workflow orchestration.

@@ -4,7 +4,7 @@ The registry itself (``_DEFAULT_REGISTRY``) is private. External code interacts
 via ``register_artifact`` and ``get_artifact_for``.
 """
 
-from box.errors import UnsupportedArtifactType
+from raft.errors import UnsupportedArtifactType
 
 
 class _ArtifactRegistry:
@@ -86,4 +86,4 @@ def get_artifact_for(data, format=None):
 
 # Import concrete artifact modules so they call register_artifact on import.
 # Kept at the bottom to avoid circular imports.
-from box.artifact import dict_, numpy_, pandas_, pandas_csv, pil_  # noqa: E402, F401
+from raft.artifact import dict_, numpy_, pandas_, pandas_csv, pil_  # noqa: E402, F401

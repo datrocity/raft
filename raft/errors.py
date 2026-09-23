@@ -1,21 +1,21 @@
-"""Exception hierarchy for box.
+"""Exception hierarchy for raft.
 
-All box-raised exceptions inherit from ``BoxError`` so callers can catch
+All raft-raised exceptions inherit from ``RaftError`` so callers can catch
 everything from the library with a single ``except``.
 """
 
 
-class BoxError(Exception):
-    """Base class for all box errors."""
+class RaftError(Exception):
+    """Base class for all raft errors."""
 
 
-class ExperimentAlreadyExists(BoxError):
+class ExperimentAlreadyExists(RaftError):
     """Raised when an experiment folder exists with different params."""
 
 
-class ArtifactNotFound(BoxError):
+class ArtifactNotFound(RaftError):
     """Raised when a requested artifact does not exist in the datastore."""
 
 
-class UnsupportedArtifactType(BoxError):
+class UnsupportedArtifactType(RaftError):
     """Raised when no registered artifact class can handle the given data type."""

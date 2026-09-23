@@ -4,8 +4,8 @@ import io
 
 import numpy as np
 
-from box.artifact import register_artifact
-from box.artifact.artifact import Artifact
+from raft.artifact import register_artifact
+from raft.artifact.artifact import Artifact
 
 
 class NumpyArrayArtifact(Artifact):

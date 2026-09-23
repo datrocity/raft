@@ -1,8 +1,8 @@
-"""box: experiment-first research catalog."""
+"""raft: experiment-first research catalog."""
 
-from box.experiment import Experiment
-from box.project import Project, init
-from box.runset import Run, RunSet
+from raft.experiment import Experiment
+from raft.project import Project, init
+from raft.runset import Run, RunSet
 
 
 def experiment(
@@ -35,7 +35,7 @@ def experiment(
 
 
 def skills_path():
-    """Return the path to the shipped ``box/skills/`` directory.
+    """Return the path to the shipped ``raft/skills/`` directory.
 
     Useful for AI assistants that want to symlink or copy the skill files
     into their local skills directory.

@@ -2,8 +2,8 @@
 
 import json
 
-from box.artifact import register_artifact
-from box.artifact.artifact import Artifact
+from raft.artifact import register_artifact
+from raft.artifact.artifact import Artifact
 
 
 class DictArtifact(Artifact):
@@ -20,7 +20,7 @@ class DictArtifact(Artifact):
         data : dict
         metadata : dict or None
             Ignored -- embedding would require wrapping the JSON in
-            ``{_box_metadata, _box_data}`` and changing the on-disk shape.
+            ``{_raft_metadata, _raft_data}`` and changing the on-disk shape.
             The ``.manifest.json`` file remains the source of truth.
 
         Returns

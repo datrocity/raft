@@ -2,10 +2,10 @@
 
 import weakref
 
-from box.artifact import get_artifact_for
-from box.conventions import MANIFEST_SUFFIX, latest_version, next_version
-from box.errors import ArtifactNotFound
-from box.manifest.lineage import (
+from raft.artifact import get_artifact_for
+from raft.conventions import MANIFEST_SUFFIX, latest_version, next_version
+from raft.errors import ArtifactNotFound
+from raft.manifest.lineage import (
     activity_source,
     author_source,
     detect_activity,
@@ -13,8 +13,8 @@ from box.manifest.lineage import (
     git_source,
     timestamp_source,
 )
-from box.manifest.manifest import Manifest
-from box.storage.file_datastore import FileDatastore
+from raft.manifest.manifest import Manifest
+from raft.storage.file_datastore import FileDatastore
 
 
 class Project:
@@ -50,7 +50,7 @@ class Project:
         self._active_experiments = weakref.WeakSet()
 
     def _uri(self, artifact_name, version):
-        return f"box://{self.name}/global/{artifact_name}/v{version}"
+        return f"raft://{self.name}/global/{artifact_name}/v{version}"
 
     def _artifact_dir(self, artifact_name):
         return f"{self.name}/global/{artifact_name}"
@@ -188,7 +188,7 @@ class Project:
         -------
         Experiment
         """
-        from box.experiment import Experiment
+        from raft.experiment import Experiment
 
         if "params" in params and len(params) == 1:
             params = params["params"]
@@ -208,7 +208,7 @@ class Project:
         callable
             Decorator to apply to a ``def`` returning the value.
         """
-        from box.compute_or_load import make_compute_or_load
+        from raft.compute_or_load import make_compute_or_load
 
         return make_compute_or_load(self)(artifact_name)
 
@@ -219,7 +219,7 @@ class Project:
         -------
         RunSet
         """
-        from box.runset import load_runs
+        from raft.runset import load_runs
 
         return load_runs(self)
 
@@ -256,7 +256,7 @@ class Project:
 
 def _artifact_class_for_extension(extension):
     """Find the artifact class registered for a file extension."""
-    from box.artifact import _DEFAULT_REGISTRY
+    from raft.artifact import _DEFAULT_REGISTRY
 
     for cls in set(_DEFAULT_REGISTRY._by_type_and_format.values()):
         if cls.extension == extension:

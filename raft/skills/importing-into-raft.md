@@ -1,11 +1,11 @@
 ---
-name: importing-into-box
-description: Use when a user asks to import an existing folder of scattered research outputs (CSVs, plots, notebooks, configs) into a box catalog. The AI scans the folder, proposes an import plan grouping files by likely experiment, and only executes after the user confirms.
+name: importing-into-raft
+description: Use when a user asks to import an existing folder of scattered research outputs (CSVs, plots, notebooks, configs) into a raft catalog. The AI scans the folder, proposes an import plan grouping files by likely experiment, and only executes after the user confirms.
 ---
 
-# Importing messy research data into box
+# Importing messy research data into raft
 
-You are helping a researcher bring years of accumulated files into a box catalog. Assume the layout is inconsistent. Do NOT execute any import until the user has approved a written plan.
+You are helping a researcher bring years of accumulated files into a raft catalog. Assume the layout is inconsistent. Do NOT execute any import until the user has approved a written plan.
 
 ## Workflow
 
@@ -56,12 +56,12 @@ You are helping a researcher bring years of accumulated files into a box catalog
 - `.npz` → `numpy.load` (yields a dict; ask user how to split)
 - `.png`, `.jpg`, `.jpeg` → `PIL.Image.open`
 - `.json` → `json.load` — save as dict artifact
-- `.yaml`, `.yml` → `yaml.safe_load` — save as dict artifact (`pyyaml` is not a `box` dependency; `pip install pyyaml` if missing)
+- `.yaml`, `.yml` → `yaml.safe_load` — save as dict artifact (`pyyaml` is not a `raft` dependency; `pip install pyyaml` if missing)
 - Unknown → skip and report
 
 ## Anti-patterns
 
-- Do NOT overwrite existing box experiments during import.
+- Do NOT overwrite existing raft experiments during import.
 - Do NOT chain `proj.experiment()` calls without capturing the handle — you'll lose track.
 - Do NOT strip whitespace or normalize case in extracted param values; keep them exactly as found.
 

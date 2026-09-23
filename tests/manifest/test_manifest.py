@@ -1,4 +1,4 @@
-from box.manifest.manifest import Manifest
+from raft.manifest.manifest import Manifest
 
 
 def test_empty_manifest_roundtrip():

@@ -6,8 +6,8 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from box.artifact import register_artifact
-from box.artifact.artifact import Artifact
+from raft.artifact import register_artifact
+from raft.artifact.artifact import Artifact
 
 
 class PandasDataFrameArtifact(Artifact):

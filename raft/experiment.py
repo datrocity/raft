@@ -3,8 +3,8 @@
 import datetime as dt
 import json
 
-from box.artifact import get_artifact_for
-from box.conventions import (
+from raft.artifact import get_artifact_for
+from raft.conventions import (
     EXPERIMENT_MANIFEST_FILENAME,
     MANIFEST_SUFFIX,
     PARAMS_FILENAME,
@@ -12,14 +12,14 @@ from box.conventions import (
     latest_version,
     next_version,
 )
-from box.errors import ArtifactNotFound
-from box.manifest.lineage import (
+from raft.errors import ArtifactNotFound
+from raft.manifest.lineage import (
     activity_source,
     author_source,
     git_source,
     timestamp_source,
 )
-from box.manifest.manifest import Manifest
+from raft.manifest.manifest import Manifest
 
 
 class Experiment:
@@ -71,7 +71,7 @@ class Experiment:
             raise AttributeError(name) from None
 
     def _uri(self, artifact_name, version):
-        return f"box://{self._project.name}/{self.name}/{artifact_name}/v{version}"
+        return f"raft://{self._project.name}/{self.name}/{artifact_name}/v{version}"
 
     def _record_input(self, uri):
         """Add a URI to the experiment's cumulative loaded-inputs set."""
@@ -80,10 +80,10 @@ class Experiment:
     def _resolve_input_name(self, name_or_uri):
         """Turn a user-supplied inputs= entry into a URI.
 
-        Full URIs (``box://...``) pass through. Short names are resolved to
+        Full URIs (``raft://...``) pass through. Short names are resolved to
         this experiment's latest version of that artifact.
         """
-        if name_or_uri.startswith("box://"):
+        if name_or_uri.startswith("raft://"):
             return name_or_uri
         latest = self._latest_version(name_or_uri)
         if latest is None:
@@ -113,7 +113,7 @@ class Experiment:
         return False
 
     def _find_existing_folder(self, project, name, params):
-        from box.conventions import params_hash
+        from raft.conventions import params_hash
 
         suffix = f"__{name}__{params_hash(params)}"
         try:
@@ -192,7 +192,7 @@ class Experiment:
         inputs : list of str, optional
             Override the auto-tracked cumulative inputs. Entries may be short
             artifact names (resolved to the latest version in this experiment)
-            or full ``box://`` URIs. If ``None`` (default), the manifest uses
+            or full ``raft://`` URIs. If ``None`` (default), the manifest uses
             the experiment's cumulative loaded-inputs set.
         """
         import joblib
@@ -258,7 +258,7 @@ class Experiment:
                 f"in experiment '{self.name}'"
             ) from None
         ext = data_file.split(".", 1)[1]
-        from box.project import _artifact_class_for_extension
+        from raft.project import _artifact_class_for_extension
 
         blob = self._datastore.read(f"{self._artifact_dir(name)}/{data_file}")
         self._record_input(self._uri(name, target))
@@ -282,7 +282,7 @@ class Experiment:
         callable
             Decorator to apply to a ``def`` returning the value.
         """
-        from box.compute_or_load import make_compute_or_load
+        from raft.compute_or_load import make_compute_or_load
 
         return make_compute_or_load(self)(artifact_name)
 

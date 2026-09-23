@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import pandas.testing as pdt
 
-from box import init
+from raft import init
 
 
 def _today():
@@ -66,9 +66,9 @@ def test_experiment_different_params_makes_different_folder(tmp_path):
 
 
 def test_experiment_short_form_via_module(tmp_path):
-    import box
+    import raft
 
-    exp = box.experiment(
+    exp = raft.experiment(
         "walker", "baseline", datastore=str(tmp_path), lr=0.01
     )
     exp.save({"k": 1}, "cfg")

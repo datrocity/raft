@@ -4,8 +4,8 @@ import pandas as pd
 import pandas.testing as pdt
 import pytest
 
-from box.errors import ArtifactNotFound
-from box.project import Project
+from raft.errors import ArtifactNotFound
+from raft.project import Project
 
 
 def _read_manifest(path):
@@ -74,7 +74,7 @@ def test_project_load_missing_version_raises(tmp_path):
 
 
 def test_project_init_helper_returns_project(tmp_path):
-    from box import init
+    from raft import init
 
     proj = init("walker", datastore=str(tmp_path / "catalog"))
     assert isinstance(proj, Project)

@@ -12,7 +12,7 @@ Design under test:
   out of Python scope drop out automatically.
 - ``exp.save(..., inputs=[...])`` overrides the auto-set for that one save.
   Entries may be short artifact names (resolved to the latest version in
-  this experiment) or full ``box://`` URIs.
+  this experiment) or full ``raft://`` URIs.
 """
 
 import gc
@@ -20,8 +20,8 @@ import json
 
 import pytest
 
-from box import init
-from box.errors import ArtifactNotFound
+from raft import init
+from raft.errors import ArtifactNotFound
 
 
 def _experiment_folder(tmp_path):
@@ -46,7 +46,7 @@ def test_experiment_scope_load_is_recorded_in_next_save(tmp_path):
 
     # Then: the new artifact records the loaded one as an input
     inputs = _read_inputs(_experiment_folder(tmp_path), "result")
-    assert inputs == ["box://walker/baseline/preprocessed/v1"]
+    assert inputs == ["raft://walker/baseline/preprocessed/v1"]
 
 
 def test_project_scope_load_is_recorded_in_experiment_save(tmp_path):
@@ -61,7 +61,7 @@ def test_project_scope_load_is_recorded_in_experiment_save(tmp_path):
 
     # Then: the URI (with global scope) is in the new artifact's inputs
     inputs = _read_inputs(_experiment_folder(tmp_path), "result")
-    assert inputs == ["box://walker/global/processed_input/v1"]
+    assert inputs == ["raft://walker/global/processed_input/v1"]
 
 
 def test_loaded_inputs_persist_across_saves(tmp_path):
@@ -77,7 +77,7 @@ def test_loaded_inputs_persist_across_saves(tmp_path):
 
     # Then: BOTH plot manifests reference results
     folder = _experiment_folder(tmp_path)
-    expected = ["box://walker/baseline/results/v1"]
+    expected = ["raft://walker/baseline/results/v1"]
     assert _read_inputs(folder, "plot_a") == expected
     assert _read_inputs(folder, "plot_b") == expected
 
@@ -93,7 +93,7 @@ def test_repeated_loads_are_deduped(tmp_path):
     exp.save({"plot": True}, "plot_a")
 
     inputs = _read_inputs(_experiment_folder(tmp_path), "plot_a")
-    assert inputs == ["box://walker/baseline/results/v1"]
+    assert inputs == ["raft://walker/baseline/results/v1"]
 
 
 def test_multiple_loads_are_recorded_in_insertion_order(tmp_path):
@@ -108,8 +108,8 @@ def test_multiple_loads_are_recorded_in_insertion_order(tmp_path):
 
     inputs = _read_inputs(_experiment_folder(tmp_path), "art_c")
     assert inputs == [
-        "box://walker/baseline/art_b/v1",
-        "box://walker/baseline/art_a/v1",
+        "raft://walker/baseline/art_b/v1",
+        "raft://walker/baseline/art_a/v1",
     ]
 
 
@@ -124,7 +124,7 @@ def test_explicit_inputs_kwarg_overrides_auto_set(tmp_path):
     exp.save({"c": 3}, "art_c", inputs=["art_a"])
 
     inputs = _read_inputs(_experiment_folder(tmp_path), "art_c")
-    assert inputs == ["box://walker/baseline/art_a/v1"]
+    assert inputs == ["raft://walker/baseline/art_a/v1"]
 
 
 def test_explicit_inputs_accepts_full_uris(tmp_path):
@@ -132,7 +132,7 @@ def test_explicit_inputs_accepts_full_uris(tmp_path):
     exp = proj.experiment("baseline", lr=0.01)
     exp.save({"a": 1}, "art_a")
 
-    uri = "box://walker/global/some_shared/v7"
+    uri = "raft://walker/global/some_shared/v7"
     exp.save({"c": 3}, "art_c", inputs=[uri])
 
     inputs = _read_inputs(_experiment_folder(tmp_path), "art_c")
@@ -161,7 +161,7 @@ def test_two_active_experiments_both_record_project_load(tmp_path):
     walker = tmp_path / "walker"
     a_folder = next(p for p in walker.iterdir() if "__A__" in p.name)
     b_folder = next(p for p in walker.iterdir() if "__B__" in p.name)
-    expected = ["box://walker/global/shared/v1"]
+    expected = ["raft://walker/global/shared/v1"]
     assert _read_inputs(a_folder, "result") == expected
     assert _read_inputs(b_folder, "result") == expected
 
@@ -180,7 +180,7 @@ def test_grid_loop_pattern_records_only_current_iteration(tmp_path):
     for lr in [0.01, 0.02]:
         folder = next(p for p in walker.iterdir() if f"__sweep_{lr}__" in p.name)
         assert _read_inputs(folder, "result") == [
-            "box://walker/global/shared/v1"
+            "raft://walker/global/shared/v1"
         ]
 
 
@@ -199,7 +199,7 @@ def test_close_stops_project_load_recording(tmp_path):
     a_folder = next(p for p in walker.iterdir() if "__A__" in p.name)
     b_folder = next(p for p in walker.iterdir() if "__B__" in p.name)
     assert _read_inputs(a_folder, "result") == []
-    assert _read_inputs(b_folder, "result") == ["box://walker/global/shared/v1"]
+    assert _read_inputs(b_folder, "result") == ["raft://walker/global/shared/v1"]
 
 
 def test_context_manager_auto_closes(tmp_path):
@@ -218,4 +218,4 @@ def test_context_manager_auto_closes(tmp_path):
     a_folder = next(p for p in walker.iterdir() if "__A__" in p.name)
     b_folder = next(p for p in walker.iterdir() if "__B__" in p.name)
     assert _read_inputs(a_folder, "result") == []
-    assert _read_inputs(b_folder, "result") == ["box://walker/global/shared/v1"]
+    assert _read_inputs(b_folder, "result") == ["raft://walker/global/shared/v1"]
